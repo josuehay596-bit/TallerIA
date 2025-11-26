@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>¿Qué es un commit?</title>
+    <style>
+        :root{
+            --bg:#f6f8fb;
+            --card:#ffffff;
+            --accent:#6c8cff;
+            --muted:#6b7280;
+            --shadow: 0 8px 24px rgba(31,41,55,0.08);
+        }
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,"Helvetica Neue",Arial;
+            background:linear-gradient(180deg,var(--bg),#eef4ff 60%);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:32px;
+            color:#0f172a;
+        }
+        .card{
+            width:100%;
+            max-width:760px;
+            background:var(--card);
+            border-radius:14px;
+            box-shadow:var(--shadow);
+            padding:28px;
+            transform:translateY(12px);
+            opacity:0;
+            animation:enter 600ms cubic-bezier(.2,.9,.3,1) forwards;
+            border:1px solid rgba(99,102,241,0.06);
+        }
+        @keyframes enter{
+            to{transform:translateY(0);opacity:1}
+        }
+        h1{
+            margin:0 0 8px 0;
+            font-size:20px;
+            color:#0b1220;
+        }
+        p{margin:8px 0;color:var(--muted);line-height:1.5}
+        ul{margin:8px 0 16px 20px;color:var(--muted)}
+        .tag{
+            display:inline-block;
+            padding:6px 10px;
+            background:linear-gradient(90deg,rgba(108,140,255,0.12),rgba(108,140,255,0.06));
+            color:var(--accent);
+            border-radius:999px;
+            font-weight:600;
+            font-size:12px;
+            margin-bottom:12px;
+        }
+        pre{
+            background:linear-gradient(180deg,#0b1220, #0f172a);
+            color:#e6eef8;
+            padding:14px;
+            border-radius:10px;
+            overflow:auto;
+            font-size:13px;
+            box-shadow:0 6px 18px rgba(11,18,32,0.12);
+        }
+        .muted-small{font-size:13px;color:#94a3b8;margin-top:12px}
+        .footer{
+            display:flex;
+            gap:12px;
+            margin-top:18px;
+        }
+        .btn{
+            background:transparent;
+            border:1px solid rgba(15,23,42,0.06);
+            padding:8px 12px;
+            border-radius:10px;
+            color:var(--accent);
+            cursor:pointer;
+            font-weight:600;
+            transition:all 180ms;
+        }
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(108,140,255,0.12)}
+    </style>
+</head>
+<body>
+    <article class="card" role="article" aria-labelledby="title">
+        <span class="tag">Control de versiones • Git</span>
+        <h1 id="title">¿Qué es un commit y por qué es importante?</h1>
+
+        <p>Un <strong>commit</strong> es un registro (snapshot) de los cambios realizados en el código. Incluye qué se cambió, quién lo hizo, cuándo y un mensaje breve que explica el motivo.</p>
+
+        <ul>
+            <li>Historial claro: permite ver la evolución del proyecto.</li>
+            <li>Reversibilidad: facilita deshacer cambios o identificar cuándo apareció un error.</li>
+            <li>Colaboración: cada contribución queda registrada y se puede revisar.</li>
+            <li>Automatización y trazabilidad: dispara CI/CD y deja información sobre el autor y la intención.</li>
+            <li>Mejores revisiones: commits pequeños y descriptivos simplifican code review.</li>
+        </ul>
+
+        <pre><code>
+# ejemplo rápido
+git add .
+git commit -m "Arregla validación de enteros en sumaEnteros"
+        </code></pre>
+
+        <div class="muted-small">Consejo: escribe mensajes claros y atómicos; piensa cada commit como una unidad lógica de cambio.</div>
+
+        <div class="footer">
+            <button class="btn" onclick="copy()">Copiar ejemplo</button>
+            <button class="btn" onclick="openGitDocs()">Ver documentación</button>
+        </div>
+    </article>
+
+    <script>
+        function copy(){
+            navigator.clipboard.writeText('git add .\\ngit commit -m \"Arregla validación de enteros en sumaEnteros\"')
+                .then(()=>{alert('Ejemplo copiado al portapapeles')})
+                .catch(()=>{alert('No se pudo copiar')});
+        }
+        function openGitDocs(){
+            window.open('https://git-scm.com/docs', '_blank', 'noopener');
+        }
+    </script>
+</body>
+</html>
